@@ -14,14 +14,6 @@ def get_slice_params(
     N_co: int,
     device: torch.device,
 ):
-    """
-    Returns:
-      sig_all  : (N_ax+N_co,) per-slice σ (per chosen normalization)
-                  - axial:  all ones (no ω touching axial)
-                  - coronal: softmax over coronal only, mean == 1 within coronal
-      w_all    : (N_ax+N_co,3)
-      t_all    : (N_ax+N_co,3)
-    """
     # indices
     sid_ax = torch.zeros(N_ax, dtype=torch.long, device=device) if N_ax > 0 else torch.empty(0, dtype=torch.long, device=device)
     zid_ax = torch.arange(N_ax, dtype=torch.long, device=device) if N_ax > 0 else torch.empty(0, dtype=torch.long, device=device)
